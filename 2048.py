@@ -12,7 +12,7 @@ def mergel_u(x,y,xa,ya,board):
 
 def make_move_up(board,xa,ya):
 	ret = False
-	for x in range(len(board)-1,-1,-1):
+	for x in xrange(0,len(board)):
 		for y in xrange(0,len(board)):
 			if(x+xa<len(board) and y+ya <len(board) and x+xa>=0 and y+ya>=0):
 				if(board[x][y] == board[x+xa][y+ya]):
@@ -23,7 +23,7 @@ def make_move_up(board,xa,ya):
 	return ret
 def make_move_down(board,xa,ya):
 	ret = False
-	for x in range(0,len(board)):
+	for x in range(len(board)-1,-1,-1):
 		for y in xrange(0,len(board)):
 			if(x+xa<len(board) and y+ya <len(board) and x+xa>=0 and y+ya>=0):
 				if(board[x][y] == board[x+xa][y+ya]):
@@ -35,7 +35,7 @@ def make_move_down(board,xa,ya):
 def make_move_left(board,xa,ya):
 	ret = False
 	for x in range(0,len(board)):
-		for y in xrange(0,len(board)):
+		for y in range(0,len(board)):
 			if(x+xa<len(board) and y+ya <len(board) and x+xa>=0 and y+ya>=0):
 				if(board[x][y] == board[x+xa][y+ya]):
 					board[x+xa][y+ya] *=2
@@ -46,7 +46,7 @@ def make_move_left(board,xa,ya):
 def make_move_right(board,xa,ya):
 	ret = False
 	for x in range(0,len(board)):
-		for y in xrange(len(board)-1,-1,-1):
+		for y in range(len(board)-1,-1,-1):
 			if(x+xa<len(board) and y+ya <len(board) and x+xa>=0 and y+ya>=0):
 				if(board[x][y] == board[x+xa][y+ya]):
 					board[x+xa][y+ya] *=2
@@ -57,7 +57,7 @@ def make_move_right(board,xa,ya):
 	
 def move_over_down(board):
 	ret = False
-	for x in range(len(board)-1,-1,-1):
+	for x in xrange(0,len(board)):
 		for y in xrange(0,len(board)):
 			dist = 1
 			while(x+dist<len(board) and board[x][y]!=0):
@@ -75,7 +75,7 @@ def move_over_down(board):
 	return ret
 def move_over_up(board):
 	ret = False
-	for x in range(0,len(board)):
+	for x in range(len(board)-1,-1,-1):
 		for y in xrange(0,len(board)):
 			dist = 1
 			while(x-dist>=0 and board[x][y]!=0):
@@ -95,7 +95,7 @@ def move_over_up(board):
 def move_over_left(board):
 	ret = False
 	for x in range(0,len(board)):
-		for y in xrange(0,len(board)):
+		for y in range(0,len(board)):
 			dist = 1
 			while(y-dist>=0 and board[x][y]!=0):
 				if(board[x][y-dist]==0):
@@ -114,7 +114,7 @@ def move_over_left(board):
 def move_over_right(board):
 	ret = False
 	for x in range(0,len(board)):
-		for y in xrange(len(board)-1,-1,-1):
+		for y in range(len(board)-1,-1,-1):
 			dist = 1
 			while(y+dist<len(board) and board[x][y]!=0):
 				if(board[x][y+dist]==0):
@@ -165,7 +165,7 @@ def main():
 	print(board)
 	while(input_char!='q' and free):
 		input_char = msvcrt.getch()
-		#clear()
+		clear()
 		if (input_char == 'w'):
 			ret = make_move_up(board,-1,0)
 			slide =move_over_up(board)
